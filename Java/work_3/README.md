@@ -229,19 +229,21 @@ public class KeyWordCount {
 ```
 
 运行结果:
-> new:7
->private:10
->package:1
->import:8
->finally:0
->for:0
->do:0
->while:7
->public:3
->protected:0
->else:6
->try:1
->catch:1
->class:1
->if:10
+```
+new:7
+private:10
+package:1
+import:8
+finally:0
+for:0
+do:0
+while:7
+public:3
+protected:0
+else:6
+try:1
+catch:1
+class:1
+if:10
 
+```
