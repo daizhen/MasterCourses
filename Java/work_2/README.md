@@ -1,4 +1,4 @@
-##1.  VehicleTest.java##
+## 1.  VehicleTest.java ##
 
 ```java
 
@@ -62,7 +62,7 @@ Explain:
 > 
 > The last one, althrough asigned c to v, the v still refer to a Car instance. So it calls to Car.drive to show 'Car drive'
 
-##2. Scottie.java ##
+## 2. Scottie.java ##
 
 ```java
 
