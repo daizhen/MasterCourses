@@ -4,8 +4,6 @@
 
 ### 算法描述 1 ###
 
-定义函数H(from, to, num)表示将num个盘子从from柱子移动到to柱子。则
-
 1. 定义两个变量min和max分别来存储最小和最大值
 2. 将第一个元素赋给min和max
 3. 从第二个元素开始遍历整个数组，并用当前元素分别去比较min和max
@@ -80,5 +78,26 @@ function getMinAndMax(array)
 根据上面的算法描述可以看出：该算法中主要的操作是比比较操作，在for循环中没次循环更有至多两次比较和最多一次赋值，也就是最多有3次基本操作，一共循环了n-1次。所以T(n) = (n-1)*3 = O(n)
 
 ## 使用递归方法的实现 ##
+
+### 算法描述 1 ###
+
+
+1. 将n个元素的数组s分成两个子数组s1 和 s2.
+2. 分别对s1和s2求最大，最小值。
+3. 将s1和s2各自的最大值的大者作为最终的最大值， 将s1和s2各自的最小值的小者作为最终的最小值，
+
+### 算法描述 2 ###
+
+getMinMax(s)
+{
+	middleIndex = \\(\lceil{length(s)/2}\rceil \\)
+	s1 = s[0:middleIndex]
+	s2 = s[middleIndex+1:length(s) -1]
+	[s1_min, s1_max] = getMinMax(s1)
+	[s2_min, s2_max] = getMinMax(s2)
+	
+	return [min(s1_min,s2_min),max(s1_max,s2_max)]
+}
+
 
 ### 复杂度分析 ###
