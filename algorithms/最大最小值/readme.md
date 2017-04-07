@@ -88,16 +88,65 @@ function getMinAndMax(array)
 
 ### 算法描述 2 ###
 
-getMinMax(s)
-{
-	middleIndex = \\(\lceil{length(s)/2}\rceil \\)
-	s1 = s[0:middleIndex]
-	s2 = s[middleIndex+1:length(s) -1]
-	[s1_min, s1_max] = getMinMax(s1)
-	[s2_min, s2_max] = getMinMax(s2)
-	
-	return [min(s1_min,s2_min),max(s1_max,s2_max)]
+getMinMax(s)  
+{  
+	//当只有一个元素时，最大最小值都是自身  
+	if(length(s) == 1)  
+	{
+		return [s[0],s[0]]
+	}
+	&ensp;middleIndex = \\(\lceil{length(s)/2}\rceil \\)  
+	&ensp;s1 = s[0:middleIndex]  
+	&ensp;s2 = s[middleIndex+1:length(s) -1]  
+	&ensp;[s1_min, s1_max] = getMinMax(s1)  
+	&ensp;[s2_min, s2_max] = getMinMax(s2) 
+	  
+	return [min(s1_min,s2_min),max(s1_max,s2_max)]  
 }
 
+### 算法描述 3 ###
+```javascript
+function getMinMax(s)  
+{  
+	if(s.length == 1)
+	{
+		return [s[0],s[0]];
+	}
+	var middleIndex = s.length / 2;
+	var s1 = s.slice(0,middleIndex);
+	var s2 = s.slice(middleIndex);
+	var s1_min_max = getMinMax(s1);
+	var s2_min_max = getMinMax(s2);
+	  
+	return [Math.min(s1_min_max[0],s2_min_max[0]),Math.max(s1_min_max[1],s2_min_max[1])]; 
+}
+```
 
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+
+T(n) =\\( 2*T(\lceil{n/2}\rceil ) + 3\\)
 ### 复杂度分析 ###
+由上述算法描述可以发现， 对于长度为n的数组每次分解成长度为 \\(\lceil{n/2}\rceil \\)  和 \\(n - \lceil{n/2}\rceil \\)的子数组。因为
+\\(n - \lceil{n/2}\rceil \\) <=\\(\lceil{n/2}\rceil \\). 取其大者，不妨设每次都分解成两个长度为\\(\lceil{n/2}\rceil \\)的子数组,每次递归还有至多3次比较操作，一次比较长度是否为1和两次比较子数组的返回值。
+可以得出  
+
+$$T(n) = 2*T(\lceil{n/2}\rceil ) + 3   (n>1)  $$
+
+$$T(1) = 1$$
+
+## xx ##
+
+展开公式可以得到  
+\\(T(n) = 2*T(\lceil{n/2}\rceil ) + 3 \\)
+
+\\(=2^{2}T({\lceil{n/4}\rceil} )+2*{3}+3 \\)
+
+\\(=2^{3}T({\lceil{n/8}\rceil} )+2^{2}\*3+2*{3}+3 \\)
+
+= ...
+\\(= 2^{\lceil log(n)\rceil}\*T(1) + 2^{\lceil log(n)\rceil - 1}\*3 + 2^{\lceil log(n)\rceil - 2}\*3 + ... + 3\\)
+\\(= 2^{\lceil log(n)\rceil} + 2^{\lceil log(n)\rceil - 1}\*3 + 2^{\lceil log(n)\rceil - 2}\*3 + ... + 3\\)
+\\(<= 2^{\lceil log(n)\rceil}\*3 + 2^{\lceil log(n)\rceil - 1}\*3 + 2^{\lceil log(n)\rceil - 2}\*3 + ... + 3\\)
+\\(= 3\*{\frac{1\*(1-2^{\lceil log(n)\rceil + 1})}{1 - 2}}\\)
+\\(= 3 \* (2^{\lceil log(n)\rceil + 1} - 1)\\)
+=O(n)
